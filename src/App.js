@@ -1,6 +1,6 @@
 import React from 'react'
 import './App.css';
-// import swal from 'sweetalert';
+import swal from 'sweetalert';
 
 
 class App extends React.Component {
@@ -9,8 +9,8 @@ class App extends React.Component {
     total: "",
     service: "",
     partySize: "",
-    totalTip: 0,
-    tipPP: 0
+    totalTip: "",
+    tipPP: ""
   }
 
   handleTotal = (event) => {
@@ -31,28 +31,38 @@ class App extends React.Component {
     })
   }
 
+  clearForm = (event) => {
+    event.preventDefault()
+    this.setState({
+      total: "",
+      service: "",
+      partySize: "",
+      totalTip: "",
+      tipPP: ""
+    })
+  }
+
   generateTip = (event) => {
     event.preventDefault();
     let total = this.state.total
     let service = this.state.service
     let partySize = this.state.partySize
-    let tipPerPerson = total / partySize
 
     switch (service) {
       case "excellent":
         total = total * 0.20
         break;
       case "good":
-        total = total * 0.15
+        total = total * 0.18
         break;
       case "adequate":
-        total = total * 0.12
+        total = total * 0.15
         break;
       case "subpar":
-        total = total * 0.10
+        total = total * 0.12
         break;
       case "horrid":
-        total = total * 0.00
+        total = total * 0.10
         break;
       case "":
         total = NaN
@@ -61,41 +71,21 @@ class App extends React.Component {
         total = total * 1.00
     }
 
-    if (partySize === "0" || partySize === 0) {
-      // swal({title: "Uh oh!", text: "Party size cannot be zero!", icon: "error", button: "Okay"})
-      this.setState({
-        total: "",
-        service: "",
-        partySize: "",
-        totalTip: "",
-        tipPP: ""        
-      })
+    let totalTip = parseFloat(total).toFixed(2)
+    let tipPerPerson = parseFloat(total / partySize).toFixed(2)
+
+    if (!partySize) {
+      swal({title: "Uh oh!", text: "Party size cannot be zero!", icon: "error", button: "Okay"})
+    } else if (!total) {
+      swal({title: "Uh oh!", text: "Please enter a bill total!", icon: "error", button: "Okay"})
+    } else if (!service) {
+      swal({title: "Uh oh!", text: "Please select a service level!", icon: "error", button: "Okay"})
     } else if (!isNaN(total) && !isNaN(tipPerPerson)) {
+      swal({title: "Success!", text: `Total tip: $${totalTip}, Tip Per Person: $${tipPerPerson}`, icon: "success", button: "Okay"})
       this.setState({
-        total: "",
-        service: "",
-        partySize: "",
-        totalTip: "$" + parseFloat(total).toFixed(2),
-        tipPP: "$" + parseFloat((total / this.state.partySize)).toFixed(2)
+        totalTip: totalTip,
+        tipPP: tipPerPerson
       })
-    } else if (total === "") {
-      // swal({title: "Uh oh!", text: "Please enter a bill total!", icon: "error", button: "Okay"})
-      this.setState({
-        total: "",
-        service: "",
-        partySize: "",
-        totalTip: "$",
-        tipPP: "$"        
-      })
-    } else if (service === "") {
-      // swal({title: "Uh oh!", text: "Please select a service level!", icon: "error", button: "Okay"})
-      this.setState({
-        total: "",
-        service: "",
-        partySize: "",
-        totalTip: "$",
-        tipPP: "$"        
-      })      
     }
   }
 
@@ -103,7 +93,7 @@ class App extends React.Component {
 
     return (
       <div style={{ textAlign: "center" }}>
-        <h1>Tip Calculator</h1>
+        <h1>Just the Tip</h1>
         <h6>By Shujaat Azim</h6>
           <form onSubmit={this.generateTip}>
             <label style={{ color: "green", fontWeight: "bold"}}>
@@ -141,8 +131,9 @@ class App extends React.Component {
           </form>
           <br />
           <br />
-            <h2>Total Tip: {this.state.totalTip}</h2>
-            <h2>Tip Per Person: {this.state.tipPP}</h2>
+            {/* {/* <h2>Total Tip: {this.state.totalTip}</h2>
+            <h2>Tip Per Person: {this.state.tipPP}</h2> */}
+            <button onClick={this.clearForm}>Clear</button>
         </div>
     );
   }
