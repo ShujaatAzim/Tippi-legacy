@@ -92,7 +92,7 @@ class App extends React.Component {
   render() {
 
     return (
-      <div style={{ textAlign: "center" }}>
+      <div style={{ textAlign: "center", backgroundColor: "whitesmoke" }}>
         <h1>Just the Tip</h1>
         <h6>By Shujaat Azim</h6>
           <form onSubmit={this.generateTip}>
@@ -101,7 +101,7 @@ class App extends React.Component {
               <br />
               <br />
             </label>
-            $<input type="text" value={this.state.total} onChange={this.handleTotal} style={{ width: "7%" }}/>
+            $<input required type="text" value={this.state.total} onChange={this.handleTotal} style={{ width: "7%" }}/>
           <br />
           <br />
             <label style={{ color: "green", fontWeight: "bold"}}>
@@ -109,7 +109,7 @@ class App extends React.Component {
               <br />
               <br />
             </label>
-              <select name="service" value={this.state.service} onChange={this.handleService}>
+              <select required name="service" value={this.state.service} onChange={this.handleService}>
                 <option value="" disabled hidden>Choose One</option>
                 <option value="excellent">Excellent</option>
                 <option value="good">Good</option>
@@ -124,7 +124,7 @@ class App extends React.Component {
               <br />
               <br />
             </label>
-              <input type="text" value={this.state.partySize} onChange={this.handleParty} style={{ width: "5%" }}/>
+              <input required type="text" value={this.state.partySize} onChange={this.handleParty} style={{ width: "5%" }}/>
           <br />
           <br />
             <input type="submit" />
