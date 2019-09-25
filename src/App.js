@@ -78,6 +78,8 @@ class App extends React.Component {
       swal({title: "Uh oh!", text: "Party size cannot be zero!", icon: "error", button: "Okay"})
     } else if (!total) {
       swal({title: "Uh oh!", text: "Please enter a bill total!", icon: "error", button: "Okay"})
+    } else if (total < 0 || total === 0) {
+      swal({title: "Uh oh!", text: "Bill total must be greater than $0!", icon: "error", button: "Okay"})
     } else if (!service) {
       swal({title: "Uh oh!", text: "Please select a service level!", icon: "error", button: "Okay"})
     } else if (!isNaN(total) && !isNaN(tipPerPerson)) {
@@ -101,7 +103,7 @@ class App extends React.Component {
               <br />
               <br />
             </label>
-            $<input required type="text" value={this.state.total} onChange={this.handleTotal} style={{ width: "7%" }}/>
+            $<input required type="number" min="0" value={this.state.total} onChange={this.handleTotal} style={{ width: "7%" }}/>
           <br />
           <br />
             <label style={{ color: "green", fontWeight: "bold"}}>
@@ -124,15 +126,13 @@ class App extends React.Component {
               <br />
               <br />
             </label>
-              <input required type="text" value={this.state.partySize} onChange={this.handleParty} style={{ width: "5%" }}/>
+              <input required type="number" value={this.state.partySize} onChange={this.handleParty} style={{ width: "5%" }}/>
           <br />
           <br />
             <input type="submit" />
           </form>
           <br />
           <br />
-            {/* {/* <h2>Total Tip: {this.state.totalTip}</h2>
-            <h2>Tip Per Person: {this.state.tipPP}</h2> */}
             <button onClick={this.clearForm}>Clear</button>
         </div>
     );
