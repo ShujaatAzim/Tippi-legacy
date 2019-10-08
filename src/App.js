@@ -94,19 +94,21 @@ class App extends React.Component {
   render() {
 
     return (
-      <div style={{ textAlign: "center", backgroundColor: "whitesmoke" }}>
-        <h1>Just the Tip</h1>
-        <h6>By Shujaat Azim</h6>
+      <div style={{ border: "solid", textAlign: "center", backgroundColor: "whitesmoke", margin: "3% 25%", paddingBottom: "30px"}}>
+        <div>
+          <h1 style={{ fontSize: "50px", color: "maroon" }}>Just the Tip!</h1>
+          <h6>By Shujaat Azim</h6>
+        </div>
           <form onSubmit={this.generateTip}>
-            <label style={{ color: "green", fontWeight: "bold"}}>
+            <label style={{ color: "maroon", fontWeight: "bold"}}>
               How much is your bill?
               <br />
               <br />
             </label>
-            $<input required type="number" min="0" value={this.state.total} onChange={this.handleTotal} style={{ width: "7%" }}/>
+            <input required placeholder="$" type="number" step="0.01" min="0.00" value={this.state.total} onChange={this.handleTotal} style={{ width: "7%" }}/>
           <br />
           <br />
-            <label style={{ color: "green", fontWeight: "bold"}}>
+            <label style={{ color: "maroon", fontWeight: "bold"}}>
               How was the service? 
               <br />
               <br />
@@ -121,19 +123,19 @@ class App extends React.Component {
               </select>
           <br />
           <br />
-            <label style={{ color: "green", fontWeight: "bold"}}>
-              How many people splitting? 
+            <label style={{ color: "maroon", fontWeight: "bold"}}>
+              How many people are splitting? 
               <br />
               <br />
             </label>
-              <input required type="number" value={this.state.partySize} onChange={this.handleParty} style={{ width: "5%" }}/>
+              <input required min="1" placeholder ="#" type="number" value={this.state.partySize} onChange={this.handleParty} style={{ width: "5%" }}/>
           <br />
           <br />
             <input type="submit" />
           </form>
           <br />
           <br />
-            <button onClick={this.clearForm}>Clear</button>
+            <button type="button" className="btn-danger" onClick={this.clearForm}>Clear</button>
         </div>
     );
   }
