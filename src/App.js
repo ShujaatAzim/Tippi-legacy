@@ -10,7 +10,17 @@ class App extends React.Component {
     service: "",
     partySize: "",
     totalTip: "",
-    tipPP: ""
+    tipPP: "",
+    tipHistory: [],
+    historyShowing: false
+  }
+
+  componentDidMount() {
+    fetch('http://localhost:3000/tips')
+    .then(resp => resp.json())
+    .then(tips => this.setState({
+      tipHistory: tips
+    }))
   }
 
   handleTotal = (event) => {
@@ -39,6 +49,13 @@ class App extends React.Component {
       partySize: "",
       totalTip: "",
       tipPP: ""
+    })
+  }
+
+  seeHistory = (event) => {
+    event.preventDefault()
+    this.setState({
+      historyShowing: this.state.historyShowing ? false : true
     })
   }
 
@@ -106,7 +123,8 @@ class App extends React.Component {
               <br />
               <br />
             </label>
-            <input required placeholder="$" type="number" step="0.01" min="0.00" value={this.state.total} onChange={this.handleTotal} style={{ width: "7%" }}/>
+            <input required placeholder="$" type="number" step="0.01" min="0.00" 
+              value={this.state.total} onChange={this.handleTotal} style={{ width: "7%" }} />
           <br />
           <br />
             <label style={{ color: "maroon", fontWeight: "bold"}}>
@@ -129,7 +147,8 @@ class App extends React.Component {
               <br />
               <br />
             </label>
-              <input required min="1" placeholder ="#" type="number" value={this.state.partySize} onChange={this.handleParty} style={{ width: "5%" }}/>
+              <input required min="1" placeholder ="#" type="number" value={this.state.partySize} 
+                onChange={this.handleParty} style={{ width: "5%" }}/>
           <br />
           <br />
             <input type="submit" />
@@ -137,6 +156,17 @@ class App extends React.Component {
           <br />
           <br />
             <button type="button" className="btn-danger" onClick={this.clearForm}>Clear</button>
+          <br />
+          <br />
+            {this.state.historyShowing ? 
+            <button type="button" className="btn-warning" onClick={this.seeHistory}>Hide History</button> :
+            <button type="button" className="btn-warning" onClick={this.seeHistory}>Show History</button>
+            }
+            <div>
+              {this.state.historyShowing ? 
+              this.state.tipHistory.map( tipObj => `${tipObj.amount} ${" "}`) : null
+              }
+            </div>
         </div>
     );
   }
