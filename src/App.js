@@ -19,7 +19,8 @@ class App extends React.Component {
     fetch('http://localhost:3000/tips')
     .then(resp => resp.json())
     .then(tips => this.setState({
-      tipHistory: tips
+      tipHistory: tips,
+      historyShowing: false
     }))
   }
 
@@ -48,7 +49,8 @@ class App extends React.Component {
       service: "",
       partySize: "",
       totalTip: "",
-      tipPP: ""
+      tipPP: "",
+      historyShowing: false
     })
   }
 
@@ -159,12 +161,12 @@ class App extends React.Component {
           <br />
           <br />
             {this.state.historyShowing ? 
-            <button type="button" className="btn-warning" onClick={this.seeHistory}>Hide History</button> :
-            <button type="button" className="btn-warning" onClick={this.seeHistory}>Show History</button>
+              <button type="button" className="btn-warning" onClick={this.seeHistory}>Hide History</button> :
+              <button type="button" className="btn-warning" onClick={this.seeHistory}>Show History</button>
             }
             <div>
-              {this.state.historyShowing ? 
-              this.state.tipHistory.map( tipObj => `${tipObj.amount} ${" "}`) : null
+              {this.state.historyShowing ? this.state.tipHistory.length !== 0 ? 
+                this.state.tipHistory.map( tipObj => `${tipObj.amount} ${" "}`) : "no tips yet" : null
               }
             </div>
         </div>
