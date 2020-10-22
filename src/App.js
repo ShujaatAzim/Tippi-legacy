@@ -1,7 +1,5 @@
 import React from 'react'
-import './App.css';
-import swal from 'sweetalert';
-
+import swal from 'sweetalert'
 
 class App extends React.Component {
 
