@@ -1,26 +1,21 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import swal from 'sweetalert'
 
-class App extends React.Component {
+const App = () => {
+  
+  const [total, setTotal] = useState("")
+  const [service, setService] = useState("")
+  const [partySize, setPartySize] = useState("")
+  const [totalTip, setTotalTip] = useState("")
+  const [tipPP, setTipPP] = useState("")
+  const [tipHistory, setTipHistory] = useState([])
+  const [historyShowing, setHistoryShowing] = useState(false)
 
-  state = {
-    total: "",
-    service: "",
-    partySize: "",
-    totalTip: "",
-    tipPP: "",
-    tipHistory: [],
-    historyShowing: false
-  }
-
-  componentDidMount() {
-    fetch('http://localhost:3000/tips')
-    .then(resp => resp.json())
-    .then(tips => this.setState({
-      tipHistory: tips,
-      historyShowing: false
-    }))
-  }
+  useEffect(() => {
+  fetch('http://localhost:3000/tips')
+  .then(resp => resp.json())
+  .then(tips => setTips(tips))
+  }, [])
 
   handleTotal = (event) => {
     this.setState({
