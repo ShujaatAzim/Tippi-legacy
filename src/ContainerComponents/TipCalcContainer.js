@@ -2,6 +2,8 @@ import React from 'react'
 
 const TipCalcContainer = () => {
 
+  const [] = useState("")
+
   return (
     <div style={{ border: "solid", textAlign: "center", backgroundColor: "whitesmoke", margin: "3% 25%", paddingBottom: "30px"}}>
       <div>
