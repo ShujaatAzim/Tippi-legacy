@@ -1,27 +1,58 @@
-import React from 'react'
+import React, { useState } from 'react'
+import TipForm from '../Components/TipForm'
+import swal from 'sweetalert'
 
 const TipCalcContainer = () => {
 
-  const [] = useState("")
+  const [totalTip, setTotalTip] = useState("")
+  const [tipPerPerson, setTipPerPerson] = useState("")
+
+
+
+  const generateTip = (e, total, service, partySize) => {
+    e.preventDefault()
+    switch (service) {
+      case "excellent":
+        total = total * 0.20
+        setTotalTip(parseInt(total).toFixed(2))
+        setTipPerPerson(parseFloat(total / partySize).toFixed(2))
+        break;
+      case "good":
+        total = total * 0.18
+        setTotalTip(parseInt(total).toFixed(2))
+        setTipPerPerson(parseFloat(total / partySize).toFixed(2))
+        break;
+      case "adequate":
+        total = total * 0.15
+        setTotalTip(parseInt(total).toFixed(2))
+        setTipPerPerson(parseFloat(total / partySize).toFixed(2))
+        break;
+      case "subpar":
+        total = total * 0.12
+        setTotalTip(parseInt(total).toFixed(2))
+        setTipPerPerson(parseFloat(total / partySize).toFixed(2))
+        break;
+      case "horrid":
+        total = total * 0.10
+        setTotalTip(parseInt(total).toFixed(2))
+        setTipPerPerson(parseFloat(total / partySize).toFixed(2))
+        break;
+      case "":
+        total = NaN
+        break;
+      default:
+        total = total * 1.00
+        setTotalTip((total).toFixed(2))
+        setTipPerPerson((total / partySize).toFixed(2))
+    }
+    let totallyTip = parseInt(total).toFixed(2)
+    let eachPerson = parseFloat(total / partySize).toFixed(2)
+    swal({title: "Success!", text: `Total tip: $${totallyTip}, Tip Per Person: $${eachPerson}`, icon: "success", button: "Okay"})
+  }
 
   return (
-    <div style={{ border: "solid", textAlign: "center", backgroundColor: "whitesmoke", margin: "3% 25%", paddingBottom: "30px"}}>
-      <div>
-        <h1 style={{ fontSize: "50px", color: "maroon" }}>Just the Tip!</h1>
-        <h6>By Shujaat Azim</h6>
-      </div>
-      <div>
-      { this.state.historyShowing ? 
-        <button type="button" className="btn-warning" onClick={this.seeHistory}>Hide History</button> :
-        <button type="button" className="btn-warning" onClick={this.seeHistory}>Show History</button> 
-      }
-      </div>
-      <div>
-        { this.state.historyShowing ? this.state.tipHistory.length !== 0 ? 
-          this.state.tipHistory.map( tipObj => `${tipObj.amount} ${" "}`) : "no tips yet" : 
-          null  
-        }
-      </div>
+    <div>
+      <TipForm generateTip={generateTip} />
     </div>
   )
 }
