@@ -7,8 +7,6 @@ const TipCalcContainer = () => {
   const [totalTip, setTotalTip] = useState("")
   const [tipPerPerson, setTipPerPerson] = useState("")
 
-
-
   const generateTip = (e, total, service, partySize) => {
     e.preventDefault()
     switch (service) {
