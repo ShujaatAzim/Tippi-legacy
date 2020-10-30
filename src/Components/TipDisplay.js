@@ -1,10 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
+import SaveTipForm from './SaveTipForm'
 
 const TipDisplay = props => {
 
   const { totalTip, tipPerPerson } = props
 
+  const [saveForm, setSaveForm] = useState(false)
+
   const saveTip = () => {
+    setSaveForm(true)
     console.log("saving tip...")
   }
   
@@ -13,7 +17,8 @@ const TipDisplay = props => {
       <p>Total Tip: {totalTip}</p>
       <p>Tip Per Person: {tipPerPerson}</p>
       <p>Would you like to save this tip?</p>
-      <button onClick={() => saveTip()}>Save Tip</button>
+      { saveForm ? <SaveTipForm setSaveForm={setSaveForm} totalTip={totalTip} tipPerPerson={tipPerPerson} /> : 
+        <button onClick={() => saveTip()}>Save Tip</button> }
     </div>
   )
 }
