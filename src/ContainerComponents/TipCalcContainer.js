@@ -1,11 +1,17 @@
 import React, { useState } from 'react'
 import TipForm from '../Components/TipForm'
+import TipDisplay from '../Components/TipDisplay'
 import swal from 'sweetalert'
 
 const TipCalcContainer = () => {
 
   const [totalTip, setTotalTip] = useState("")
   const [tipPerPerson, setTipPerPerson] = useState("")
+
+  const extraClear = () => {
+    setTotalTip("")
+    setTipPerPerson("")
+  }
 
   const generateTip = (e, total, service, partySize) => {
     e.preventDefault()
@@ -50,7 +56,8 @@ const TipCalcContainer = () => {
 
   return (
     <div>
-      <TipForm generateTip={generateTip} />
+      <TipForm generateTip={generateTip} extraClear={extraClear} />
+      { totalTip && tipPerPerson ? <TipDisplay totalTip={totalTip} tipPerPerson={tipPerPerson} /> : null }
     </div>
   )
 }

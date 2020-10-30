@@ -68,7 +68,7 @@ const TipForm = props => {
       </form>
       <br />
       <br />
-      <button onClick={() => clearForm()}>Clear</button>
+      <button onClick={() => {clearForm();props.extraClear()}}>Clear</button>
       <button>History</button>
     </div>
   )
