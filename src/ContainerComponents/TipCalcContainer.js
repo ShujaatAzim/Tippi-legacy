@@ -57,7 +57,7 @@ const TipCalcContainer = () => {
   return (
     <div>
       <TipForm generateTip={generateTip} extraClear={extraClear} />
-      { totalTip && tipPerPerson ? <TipDisplay totalTip={totalTip} tipPerPerson={tipPerPerson} /> : null }
+      { totalTip && tipPerPerson ? <TipDisplay totalTip={totalTip} tipPerPerson={tipPerPerson} extraClear={extraClear} /> : null }
     </div>
   )
 }

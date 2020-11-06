@@ -3,6 +3,8 @@ import swal from 'sweetalert'
 
 const TipForm = props => {
 
+  const { generateTip, extraClear } = props
+
   const [total, setTotal] = useState("")
   const [service, setService] = useState("")
   const [partySize, setPartySize] = useState("")
@@ -15,16 +17,16 @@ const TipForm = props => {
 
   const handleSubmit = (e, total, service, partySize) => {
     e.preventDefault()
-    if (!partySize) {
-      swal({title: "Uh oh!", text: "Party size cannot be zero!", icon: "error", button: "Okay"})
-    } else if (!total) {
-      swal({title: "Uh oh!", text: "Please enter a bill total!", icon: "error", button: "Okay"})
+    if (!total) {
+      swal({title: "Uh oh!", text: "Bill total cannot be $0!", icon: "error", button: "Okay"})
+    } else if (!service) {
+      swal({title: "Uh oh!", text: "Please enter a service level!", icon: "error", button: "Okay"})
     } else if (total < 0 || total === 0) {
       swal({title: "Uh oh!", text: "Bill total must be greater than $0!", icon: "error", button: "Okay"})
-    } else if (!service) {
-      swal({title: "Uh oh!", text: "Please select a service level!", icon: "error", button: "Okay"})
+    } else if (!partySize) {
+      swal({title: "Uh oh!", text: "Party size cannot be 0!", icon: "error", button: "Okay"})
     } else {
-      props.generateTip(e, total, service, partySize)
+      generateTip(e, total, service, partySize)
     }
   }
 
@@ -47,11 +49,11 @@ const TipForm = props => {
         </label>
           <select  name="service" value={service} onChange={e => setService(e.target.value)}>
             <option value="" disabled hidden>Choose One</option>
-            <option value="excellent">Excellent</option>
-            <option value="good">Good</option>
-            <option value="adequate">Adequate</option>
-            <option value="subpar">Sub-Par</option>
-            <option value="horrid">Horrid</option>
+            <option value="excellent">Excellent, 20%</option>
+            <option value="good">Good, 18%</option>
+            <option value="adequate">Adequate, 15%</option>
+            <option value="subpar">Sub-Par, 12%</option>
+            <option value="horrid">Horrid, 10%</option>
           </select>
       <br />
       <br />
@@ -68,7 +70,7 @@ const TipForm = props => {
       </form>
       <br />
       <br />
-      <button onClick={() => {clearForm();props.extraClear()}}>Clear</button>
+      <button onClick={() => {clearForm();extraClear()}}>Clear</button>
       <button>History</button>
     </div>
   )
