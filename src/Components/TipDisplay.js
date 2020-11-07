@@ -16,9 +16,14 @@ const TipDisplay = props => {
     <div>
       <p>Total Tip: ${totalTip}</p>
       <p>Tip Per Person: ${tipPerPerson}</p>
-      <p>Would you like to save this tip?</p>
-      { saveForm ? <SaveTipForm setSaveForm={setSaveForm} totalTip={totalTip} tipPerPerson={tipPerPerson} /> : 
-        <div><button onClick={() => saveTip()}>Save Tip</button><button onClick={() => extraClear()}>Don't Save</button></div> }
+      { saveForm ? 
+        <SaveTipForm setSaveForm={setSaveForm} totalTip={totalTip} tipPerPerson={tipPerPerson} /> 
+        : 
+        <div>
+          <p>Would you like to save this tip?</p>
+          <button onClick={() => saveTip()}>Save Tip</button>
+          <button onClick={() => extraClear()}>Don't Save</button>
+        </div> }
     </div>
   )
 }
