@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 
-const SaveTipForm = props => {
+const SaveTipForm = () => {
 
   const [restaurant, setRestaurant] = useState("")
 
   const handleSubmit = e => {
     e.preventDefault()
-    console.log("saving tip...")
+    console.log(`saving tip for ${restaurant}`)
   }
   
   return (
