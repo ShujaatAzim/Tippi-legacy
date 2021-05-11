@@ -70,7 +70,7 @@ const TipForm = props => {
       </form>
       <br />
       <br />
-      <button onClick={() => {clearForm();extraClear()}}>Clear</button>
+      <button onClick={() => {clearForm()}}>Clear</button>
       <button>History</button>
     </div>
   )
