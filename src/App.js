@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import TipCalcContainer from './ContainerComponents/TipCalcContainer';
 
 const App = () => {

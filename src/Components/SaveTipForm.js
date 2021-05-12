@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 
 const SaveTipForm = () => {
 
@@ -16,7 +16,7 @@ const SaveTipForm = () => {
         <input name="restaurant" type="text" onChange={e => setRestaurant(e.target.value)} />
       </form>
     </div>
-  )
+  );
 }
 
-export default SaveTipForm
+export default SaveTipForm;

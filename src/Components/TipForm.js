@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import swal from 'sweetalert'
+import React, { useState } from 'react';
+import swal from 'sweetalert';
 
 const TipForm = props => {
 
@@ -73,7 +73,7 @@ const TipForm = props => {
       <button onClick={() => {clearForm()}}>Clear</button>
       <button>History</button>
     </div>
-  )
+  );
 }
 
-export default TipForm
+export default TipForm;

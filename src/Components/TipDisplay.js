@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import SaveTipForm from './SaveTipForm'
+import React, { useState } from 'react';
+import SaveTipForm from './SaveTipForm';
 
 const TipDisplay = props => {
 
@@ -25,7 +25,7 @@ const TipDisplay = props => {
           <button onClick={() => extraClear()}>Don't Save</button>
         </div> }
     </div>
-  )
+  );
 }
 
-export default TipDisplay
+export default TipDisplay;

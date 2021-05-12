@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
-import TipForm from '../Components/TipForm'
-import TipDisplay from '../Components/TipDisplay'
-import swal from 'sweetalert'
+import React, { useState } from 'react';
+import TipForm from '../Components/TipForm';
+import TipDisplay from '../Components/TipDisplay';
+import swal from 'sweetalert';
 
 const TipCalcContainer = () => {
 
@@ -59,7 +59,7 @@ const TipCalcContainer = () => {
       <TipForm generateTip={generateTip} extraClear={extraClear} />
       { totalTip && tipPerPerson ? <TipDisplay totalTip={totalTip} tipPerPerson={tipPerPerson} extraClear={extraClear} /> : null }
     </div>
-  )
+  );
 }
 
-export default TipCalcContainer
+export default TipCalcContainer;
