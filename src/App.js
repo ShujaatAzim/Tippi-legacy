@@ -6,7 +6,7 @@ const App = () => {
   return (
     <div style={{ border: "solid", textAlign: "center", backgroundColor: "whitesmoke", margin: "3% 25%", paddingBottom: "30px"}}>
       <div>
-        <h1 style={{ fontSize: "50px", color: "maroon" }}>Just the Tip!</h1>
+        <h1 style={{ fontSize: "50px", color: "maroon" }}>Tippi</h1>
         <h6>By Shujaat Azim</h6>
       </div>
         <TipCalcContainer />

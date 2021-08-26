@@ -3,7 +3,7 @@ import swal from 'sweetalert';
 
 const TipForm = props => {
 
-  const { generateTip, extraClear } = props
+  const { generateTip } = props
 
   const [total, setTotal] = useState("")
   const [service, setService] = useState("")
