@@ -3,7 +3,7 @@ import swal from 'sweetalert';
 
 const TipForm = props => {
 
-  const { generateTip } = props
+  const { generateTip, extraClear } = props
 
   const [total, setTotal] = useState("")
   const [service, setService] = useState("")
@@ -38,7 +38,7 @@ const TipForm = props => {
           <br />
           <br />
         </label>
-        <input  placeholder="$" type="number" step="0.01" min="0.00" 
+        $ <input  placeholder="total" type="number" step="0.01" min="0.00" 
           value={total} onChange={e => setTotal(e.target.value)} style={{ width: "7%" }} />
       <br />
       <br />
@@ -70,7 +70,7 @@ const TipForm = props => {
       </form>
       <br />
       <br />
-      <button onClick={() => {clearForm()}}>Clear</button>
+      <button onClick={() => {clearForm();extraClear()}}>Clear</button>
       <button>History</button>
     </div>
   );

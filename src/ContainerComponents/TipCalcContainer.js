@@ -7,10 +7,12 @@ const TipCalcContainer = () => {
 
   const [totalTip, setTotalTip] = useState("")
   const [tipPerPerson, setTipPerPerson] = useState("")
+  const [saveForm, setSaveForm] = useState(false)
 
   const extraClear = () => {
     setTotalTip("")
     setTipPerPerson("")
+    setSaveForm(false)
   }
 
   const generateTip = (e, total, service, partySize) => {
@@ -57,7 +59,8 @@ const TipCalcContainer = () => {
   return (
     <div>
       <TipForm generateTip={generateTip} extraClear={extraClear} />
-      { totalTip && tipPerPerson ? <TipDisplay totalTip={totalTip} tipPerPerson={tipPerPerson} extraClear={extraClear} /> : null }
+      { totalTip && tipPerPerson ? <TipDisplay totalTip={totalTip} tipPerPerson={tipPerPerson} extraClear={extraClear} 
+        saveForm={saveForm} setSaveForm={setSaveForm} /> : null }
     </div>
   );
 }

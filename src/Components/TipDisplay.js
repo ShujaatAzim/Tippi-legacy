@@ -1,11 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import SaveTipForm from './SaveTipForm';
 
 const TipDisplay = props => {
 
-  const { totalTip, tipPerPerson, extraClear } = props
-
-  const [saveForm, setSaveForm] = useState(false)
+  const { totalTip, tipPerPerson, extraClear, saveForm, setSaveForm } = props
 
   const saveTip = () => {
     setSaveForm(true)
@@ -13,7 +11,7 @@ const TipDisplay = props => {
   }
   
   return (
-    <div>
+    <div style={{ color: "maroon", fontWeight: "bold" }}>
       <p>Total Tip: ${totalTip}</p>
       <p>Tip Per Person: ${tipPerPerson}</p>
       { saveForm ? 
