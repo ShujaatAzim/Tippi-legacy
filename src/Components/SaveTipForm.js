@@ -1,19 +1,21 @@
 import React, { useState } from 'react';
 
-const SaveTipForm = () => {
+const SaveTipForm = props => {
 
+  const { totalTip, tipPerPerson } = props;
   const [restaurant, setRestaurant] = useState("")
 
   const handleSubmit = e => {
     e.preventDefault()
-    console.log(`saving tip for ${restaurant}`)
+    console.log(`saving total: ${totalTip} and per person: ${tipPerPerson} for ${restaurant}`)
   }
   
   return (
     <div>
       <form onSubmit={e => handleSubmit(e)}>
-        <label for="restaurant">Restaurant</label>
+        <label>Restaurant</label>
         <input name="restaurant" type="text" onChange={e => setRestaurant(e.target.value)} />
+        <input type="submit" />
       </form>
     </div>
   );
