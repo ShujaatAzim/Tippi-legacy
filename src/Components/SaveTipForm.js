@@ -14,7 +14,9 @@ const SaveTipForm = props => {
     <div>
       <form onSubmit={e => handleSubmit(e)}>
         <label>Restaurant</label>
+        <br />
         <input name="restaurant" type="text" onChange={e => setRestaurant(e.target.value)} />
+        <br />
         <input type="submit" />
       </form>
     </div>
